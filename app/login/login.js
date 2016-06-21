@@ -23,9 +23,8 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
       //  }, function(err) {
       //    $scope.err = errMessage(err);
       //  });
-      var provider = 'google';
-      var scope = {scope:'email'};
-      Auth.$authWithOAuthRedirect(provider, scope).then(function (authObject) {
+      
+      Auth.$authWithOAuthRedirect('google').then(function (authObject) {
         $location.path('/account');
       }, function (err) {
         $scope.err = errMessage(err);
