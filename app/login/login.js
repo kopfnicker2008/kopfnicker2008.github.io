@@ -23,9 +23,9 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
       //  }, function(err) {
       //    $scope.err = errMessage(err);
       //  });
-      Auth.$authWithOAuthPopup("google", function(error, authData) {
+      Auth.authWithOAuthPopup("google", function(error, authData) {
         if (error) {
-          console.log("Login Failed!", error);
+          console.log("Authentication Failed!", error);
         } else {
           console.log("Authenticated successfully with payload:", authData);
         }
