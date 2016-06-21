@@ -16,19 +16,19 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
 
     $scope.login = function(email, pass) {
       $scope.err = null;
-      //Auth.$authWithPassword({ email: email, password: pass }, {rememberMe: true})
+      //Auth.$authWithOAuthPopup({ email: email, password: pass }, {rememberMe: true})
       //  .then(function(/* user */) {
       //    //$location.path('/account');
       //    $location.path('/account');
       //  }, function(err) {
       //    $scope.err = errMessage(err);
       //  });
-      Auth.authWithOAuthPopup("google", function(error, authData) {
-        if (error) {
-          console.log("Authentication Failed!", error);
-        } else {
-          console.log("Authenticated successfully with payload:", authData);
-        }
+      var provider = 'google';
+      var scope = {scope:'email'};
+      Auth.$authWithOAuthRedirect(provider, scope).then(function (authObject) {
+        $location.path('/account');
+      }, function (err) {
+        $scope.err = errMessage(err);
       });
     };
 
