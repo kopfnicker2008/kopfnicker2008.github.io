@@ -1,0 +1,11 @@
+
+
+
+
+<section class="list-group">
+    <a ng-href="#/edit/{{user.$id}}" class="list-group-item" ng-repeat="user in ctrl.users">{{user.name}} <strong>{{user.email}}</strong></a>
+</section>
+<ul id="messages" ng-show="ctrl.users.length">
+    <li ng-repeat="user in ctrl.users">{{user.email}}</li>
+</ul>
+
