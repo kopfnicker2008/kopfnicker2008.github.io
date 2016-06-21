@@ -23,8 +23,9 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
       //  }, function(err) {
       //    $scope.err = errMessage(err);
       //  });
-      
-      Auth.$authWithOAuthRedirect('google').then(function (authObject) {
+
+      Auth.authWithOAuthPopup('google').then(function (authObject) {
+        console.log(authObject);
         $location.path('/account');
       }, function (err) {
         $scope.err = errMessage(err);
