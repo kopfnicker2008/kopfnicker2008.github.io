@@ -8,7 +8,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
     });
   }])
 
-  .controller('LoginCtrl', ['$scope', 'Auth', '$location', 'fbutil', function($scope, Auth, $location, fbutil) {
+  .controller('LoginCtrl', ['$scope', '$firebaseObject', 'Auth', '$location', 'fbutil', function($scope, $firebaseObject, Auth, $location, fbutil) {
     $scope.email = null;
     $scope.pass = null;
 
@@ -17,9 +17,13 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
           .then(function (authObject) {
             console.log(authObject);
             var ref = fbutil.ref('users', authObject.uid);
-            return fbutil.handler(function(cb) {
-              ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name}, cb);
-            });
+            var obj = $firebaseObject(ref);
+            obj.foo = "bar";
+            obj.$save();
+
+            //return fbutil.handler(function(cb) {
+            //  ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name}, cb);
+            //});
           })
           .then(function(/* user */) {
             // redirect to the account page
