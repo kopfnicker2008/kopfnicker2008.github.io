@@ -24,12 +24,23 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
       //    $scope.err = errMessage(err);
       //  });
 
-      Auth.$authWithOAuthPopup('google', {scope:'email'}).then(function (authObject) {
-        console.log(authObject);
-        $location.path('/account');
-      }, function (err) {
-        $scope.err = errMessage(err);
-      });
+      // YiZfekRyO6NkfpTNSlAyZyTeMzG2 -> aotten.joinmedia@googlemail.com
+
+
+      Auth.$authWithOAuthPopup('google', {scope:'email'})
+          .then(function (authObject) {
+            console.log(authObject);
+            var ref = fbutil.ref('users', authObject.uid);
+            return fbutil.handler(function(cb) {
+              ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name}, cb);
+            });
+          })
+          .then(function(/* user */) {
+            // redirect to the account page
+            $location.path('/account');
+          }, function(err) {
+            $scope.err = errMessage(err);
+          });
     };
 
     $scope.createAccount = function() {
