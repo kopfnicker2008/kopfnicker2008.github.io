@@ -18,7 +18,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
             console.log(authObject);
             var ref = fbutil.ref('users', authObject.uid);
             return fbutil.handler(function(cb) {
-              ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name, online: true}, cb);
+              ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name}, cb);
             });
           })
           .then(function(/* user */) {
