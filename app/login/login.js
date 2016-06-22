@@ -28,11 +28,11 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
             //  ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name}, cb);
             //});
 
-            var ref = new $window.Firebase(FBURL);
+            var ref = new Firebase(FBURL);
             var obj = $firebaseObject(ref);
             // to take an action after the data loads, use the $loaded() promise
             obj.$loaded().then(function(){
-              console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
+              console.log("loaded record:", obj.$id);
 
               // To iterate the key/value pairs of the object, use angular.forEach()
               angular.forEach(obj, function(value, key){
