@@ -48,7 +48,7 @@
         <label>
             <span>Profilbilder:</span>
             <br />{{profile.profile_image}}
-            <input id="inputFileToLoad" type="file" onchange="changesrc(event);" />
+            <input id="inputFileToLoad" type="file" ng-change="changeSrc(event);" />
             <canvas width="400" height="300" id="canvas"/>
         </label>
 
