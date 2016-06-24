@@ -20,15 +20,15 @@
                 file: new File([blob], "testfile"),
                 token: token,
                 onComplete: function(data) {
-                    var element = document.createElement("pre");
-                    element.appendChild(document.createTextNode(data));
-                    document.getElementById('results').appendChild(element);
-                    var thumpImg = document.createElement('img');
-                    thumpImg.src = JSON.parse(data).thumbnailLink;
-                    document.getElementById('thumpImg').appendChild(thumpImg);
+                    //var element = document.createElement("pre");
+                    //element.appendChild(document.createTextNode(data));
+                    //document.getElementById('results').appendChild(element);
+                    //var thumpImg = document.createElement('img');
+                    //thumpImg.src = JSON.parse(data).thumbnailLink;
+                    //document.getElementById('thumpImg').appendChild(thumpImg);
                     var bigImg = document.createElement('img');
                     bigImg.src = 'https://drive.google.com/uc?id='+JSON.parse(data).id;
-                    document.getElementById('thumpImg').appendChild(bigImg);
+                    document.getElementById('canvas-container').appendChild(bigImg);
                 },
                 onProgress: function(data){
                     console.log(((data.loaded/data.total)*100)+'%');

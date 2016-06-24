@@ -49,7 +49,10 @@
             <span>Profilbilder:</span>
             <br />{{profile.profile_image}}
             <input id="inputFileToLoad" type="file" onchange="angular.element(this).scope().changeSrc(event);" />
-            <canvas width="400" height="300" id="canvas"/>
+            <div id="canvas-container">
+                <canvas width="400" height="300" id="canvas"/>
+            </div>
+
         </label>
 
         <label>
