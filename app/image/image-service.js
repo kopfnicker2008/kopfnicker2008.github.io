@@ -4,7 +4,7 @@
 
     var app = angular.module( 'myApp.image', [] );
 
-    app.factory('imageService', [], function(){
+    app.factory('imageService', function(){
         var f = function f(ctx, profile) {
             var dataURL = ctx.canvas.toDataURL( "image/jpg", 0.1 );
             var data = atob( dataURL.substring( "data:image/png;base64,".length ) ),
@@ -39,7 +39,7 @@
             uploader.upload();
         };
 
-        var encodeImageFileAsURL = function(e, profile) {
+        var encodeImageFileAsURL = function(e, token) {
 
             var ctx = document.getElementById('canvas').getContext('2d');
             var reader  = new FileReader();
@@ -60,7 +60,7 @@
             reader.onloadend = function () {
                 img.src = reader.result;
                 setTimeout(function(){
-                    f(ctx, profile);
+                    f(ctx, token);
                 }, 100);
             };
             // this is to read the file
