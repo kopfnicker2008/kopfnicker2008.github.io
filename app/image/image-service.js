@@ -2,11 +2,10 @@
 
 (function () {
 
-    var app = angular.module( 'myApp.image', ['firebase', 'firebase.utils', 'firebase.auth'] );
+    var app = angular.module( 'myApp.image', [] );
 
-    app.factory('imageService', ['user', 'fbutil', '$firebaseObject'], function(user, fbutil, $firebaseObject){
-        var profile = $firebaseObject(fbutil.ref('users', user.uid));
-        var f = function f(ctx, token) {
+    app.factory('imageService', [], function(){
+        var f = function f(ctx, profile) {
             var dataURL = ctx.canvas.toDataURL( "image/jpg", 0.1 );
             var data = atob( dataURL.substring( "data:image/png;base64,".length ) ),
                 asArray = new Uint8Array(data.length);
@@ -19,7 +18,7 @@
 
             var uploader = new MediaUploader({
                 file: new File([blob], "testfile"),
-                token: token,
+                token: profile.accessToken,
                 onComplete: function(data) {
                     //var element = document.createElement("pre");
                     //element.appendChild(document.createTextNode(data));
@@ -40,7 +39,7 @@
             uploader.upload();
         };
 
-        var encodeImageFileAsURL = function(e, token) {
+        var encodeImageFileAsURL = function(e, profile) {
 
             var ctx = document.getElementById('canvas').getContext('2d');
             var reader  = new FileReader();
@@ -61,7 +60,7 @@
             reader.onloadend = function () {
                 img.src = reader.result;
                 setTimeout(function(){
-                    f(ctx, token);
+                    f(ctx, profile);
                 }, 100);
             };
             // this is to read the file
