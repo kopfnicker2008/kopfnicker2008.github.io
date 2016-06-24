@@ -16,7 +16,6 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
         Auth.$authWithOAuthPopup('google', {scope:'email'})
             .then(function (authObject) {
               console.log(authObject);
-                var profile = $firebaseObject(fbutil.ref('users', authObject.uid));
               var ref = fbutil.ref('users', authObject.uid);
 
 
@@ -30,10 +29,18 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
                     angular.forEach(obj, function(value, key) {
                         console.log(key, value);
                     });
+
+                    if(obj.online){
+                        console.log('exist');
+                        obj.online = 'update';
+                        obj.$save();
+                    }else{
+                        return fbutil.handler(function(cb) {
+                            ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name, online: 'true'}, cb);
+                        });
+                    }
                 });
-              return fbutil.handler(function(cb) {
-                ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name, online: 'true'}, cb);
-              });
+
             })
             .then(function(/* user */) {
               // redirect to the account page
