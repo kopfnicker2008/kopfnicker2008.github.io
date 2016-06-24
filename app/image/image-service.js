@@ -29,6 +29,7 @@
                     var bigImg = document.createElement('img');
                     var src = 'https://drive.google.com/uc?id='+JSON.parse(data).id;
                     profile.profile_image = src;
+                    profile.$save();
                     bigImg.src = src;
                     document.getElementById('canvas-container').appendChild(bigImg);
                 },
