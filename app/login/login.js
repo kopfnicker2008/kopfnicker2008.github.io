@@ -31,8 +31,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
                     });
 
                     if(obj.online){
-                        console.log('exist');
-                        obj.online = 'update';
+                        obj.online = 'true';
                         obj.$save();
                     }else{
                         return fbutil.handler(function(cb) {
