@@ -12,7 +12,7 @@
 
       // expose logout function to scope
       $scope.logout = function() {
-        //profile.online = 'false';
+        profile.online = 'false';
         if( unbind ) { unbind(); }
         profile.$destroy();
         Auth.$unauth();
