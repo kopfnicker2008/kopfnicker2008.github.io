@@ -16,10 +16,52 @@
         </label>
 
         <label>
-            <span>Straße:</span>
-            <br /><span ng-show="profile.street">{{profile.street}}</span>
+            <span>Geburtstag:</span>
+            <br /><input type="text" name="birthday" ng-model="profile.birthday"/>
         </label>
-        <input ng-hide="profile.street" type="text" name="street" ng-model="profile.street"/>
+
+        <label>
+            <span>Straße:</span>
+            <br /><input type="text" name="street" ng-model="profile.street"/>
+        </label>
+
+        <label>
+            <span>Hausnummer:</span>
+            <br /><input type="text" name="housenumber" ng-model="profile.housenumber"/>
+        </label>
+
+        <label>
+            <span>PLZ:</span>
+            <br /><input type="text" name="zipcode" ng-model="profile.zipcode"/>
+        </label>
+
+        <label>
+            <span>Ort:</span>
+            <br /><input type="text" name="city" ng-model="profile.city"/>
+        </label>
+
+        <label>
+            <span>Kontostand:</span>
+            <br />{{profile.account_balance}}
+        </label>
+
+        <label>
+            <span>Profilbilder:</span>
+            <br />{{profile.profile_image}}
+            <input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL(event);" />
+            <canvas width="400" height="300" id="canvas"/>
+        </label>
+
+        <label>
+            <span>Anzahl der Ausrichtungen:</span>
+            <br />{{profile.counted_events}}
+        </label>
+
+        <label>
+            <span>Ausrichtungsscore (Anzahl der Ausrichtungen/Zugehörigkeit):</span>
+            <br />{{profile.counted_events}}
+        </label>
+
     </fieldset>
 </form>
 

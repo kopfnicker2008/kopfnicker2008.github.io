@@ -3,8 +3,8 @@
 
   var app = angular.module('myApp.account', ['firebase', 'firebase.utils', 'firebase.auth', 'ngRoute']);
 
-  app.controller('AccountCtrl', ['$scope', 'Auth', 'fbutil', 'user', '$location', '$firebaseObject',
-    function($scope, Auth, fbutil, user, $location, $firebaseObject) {
+  app.controller('AccountCtrl', ['$scope', 'Auth', 'fbutil', 'user', '$location', '$firebaseObject', 'imageService',
+    function($scope, Auth, fbutil, user, $location, $firebaseObject, imageService) {
       var unbind;
       // create a 3-way binding with the user profile object in Firebase
       var profile = $firebaseObject(fbutil.ref('users', user.uid));
@@ -17,6 +17,10 @@
         profile.$destroy();
         Auth.$unauth();
         $location.path('/login');
+      };
+
+      $scope.importImage = function(e){
+        imageService.encodeImageFileAsURL(e);
       };
 
 
