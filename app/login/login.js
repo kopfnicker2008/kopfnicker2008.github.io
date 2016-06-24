@@ -32,7 +32,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
 
                     if(obj.online){
                         obj.online = 'true';
-                        obj.accessToken = authObject.google.accessToken;
+                        obj.accessToken =
                         obj.$save();
                     }else{
                         return fbutil.handler(function(cb) {

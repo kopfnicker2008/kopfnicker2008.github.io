@@ -3,10 +3,14 @@
 
   var app = angular.module('myApp.Mitglieder', ['firebase', 'firebase.utils', 'firebase.auth', 'ngRoute']);
 
-  app.controller('MitgliederCtrl', ['$scope', 'fbutil', '$firebaseObject', '$firebaseArray',
-    function($scope, fbutil, $firebaseObject, $firebaseArray) {
+  app.controller('MitgliederCtrl', ['$scope', 'fbutil', '$firebase','$firebaseObject', '$firebaseArray',
+    function($scope, fbutil, $firebase, $firebaseObject, $firebaseArray) {
       var users = $firebaseArray(fbutil.ref('users'));
+      var user = $firebase(ref).$asObject();
 
+      user.$loaded().then(function() {
+        $rootScope.currentUser = user;
+      });
       $scope.users = [
         {
           name: 'User1',
