@@ -16,7 +16,21 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
         Auth.$authWithOAuthPopup('google', {scope:'email'})
             .then(function (authObject) {
               console.log(authObject);
+                var profile = $firebaseObject(fbutil.ref('users', authObject.uid));
               var ref = fbutil.ref('users', authObject.uid);
+
+
+                var obj = $firebaseObject(ref);
+
+                // to take an action after the data loads, use the $loaded() promise
+                obj.$loaded().then(function() {
+                    console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
+
+                    // To iterate the key/value pairs of the object, use angular.forEach()
+                    angular.forEach(obj, function(value, key) {
+                        console.log(key, value);
+                    });
+                });
               return fbutil.handler(function(cb) {
                 ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name, online: 'true'}, cb);
               });
