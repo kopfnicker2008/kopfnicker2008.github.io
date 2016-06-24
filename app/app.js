@@ -13,7 +13,10 @@ angular.module('myApp', [
     'myApp.edit',
     'myApp.users',
     'myApp.add',
-    'myApp.image'
+    'myApp.image',
+    'myApp.Mitglied',
+    'myApp.Mitglieder',
+    'myApp.MitgliederService'
   ])
   
   .config(['$routeProvider', function ($routeProvider) {
