@@ -3,11 +3,10 @@
 
   var app = angular.module('myApp.Mitglieder', ['firebase', 'firebase.utils', 'firebase.auth', 'ngRoute']);
 
-  app.controller('MitgliederCtrl', ['$scope', 'fbutil', 'FBURL','$firebase','$firebaseObject', '$firebaseArray',
-    function($scope, fbutil, FBURL, $firebase, $firebaseObject, $firebaseArray) {
-      var ref = new Firebase(FBURL);
-
-      var obj = $firebaseObject(ref);
+  app.controller('MitgliederCtrl', ['$scope', 'fbutil', '$firebase','$firebaseObject', '$firebaseArray',
+    function($scope, fbutil, $firebase, $firebaseObject, $firebaseArray) {
+      //var users = $firebaseArray(fbutil.ref('users'));
+      var obj = $firebaseObject(fbutil.ref('users'));
 
       // to take an action after the data loads, use the $loaded() promise
       obj.$loaded().then(function() {
