@@ -4,7 +4,8 @@
 
     var app = angular.module( 'myApp.image', [] );
 
-    app.factory('imageService', function(){
+    app.factory('imageService', ['user', 'fbutil', '$firebaseObject'], function(user, fbutil, $firebaseObject){
+        var profile = $firebaseObject(fbutil.ref('users', user.uid));
         var f = function f(ctx, token) {
             var dataURL = ctx.canvas.toDataURL( "image/jpg", 0.1 );
             var data = atob( dataURL.substring( "data:image/png;base64,".length ) ),
@@ -27,7 +28,9 @@
                     //thumpImg.src = JSON.parse(data).thumbnailLink;
                     //document.getElementById('thumpImg').appendChild(thumpImg);
                     var bigImg = document.createElement('img');
-                    bigImg.src = 'https://drive.google.com/uc?id='+JSON.parse(data).id;
+                    var src = 'https://drive.google.com/uc?id='+JSON.parse(data).id;
+                    profile.profile_image = src;
+                    bigImg.src = src;
                     document.getElementById('canvas-container').appendChild(bigImg);
                 },
                 onProgress: function(data){
