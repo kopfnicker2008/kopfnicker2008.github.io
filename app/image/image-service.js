@@ -2,7 +2,7 @@
 
 (function () {
 
-    var app = angular.module( 'myApp.image', [] );
+    var app = angular.module( 'myApp.image', ['firebase', 'firebase.utils', 'firebase.auth'] );
 
     app.factory('imageService', ['user', 'fbutil', '$firebaseObject'], function(user, fbutil, $firebaseObject){
         var profile = $firebaseObject(fbutil.ref('users', user.uid));
