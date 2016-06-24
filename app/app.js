@@ -12,7 +12,8 @@ angular.module('myApp', [
     'myApp.list',
     'myApp.edit',
     'myApp.users',
-    'myApp.add'
+    'myApp.add',
+    'myApp.image'
   ])
   
   .config(['$routeProvider', function ($routeProvider) {
