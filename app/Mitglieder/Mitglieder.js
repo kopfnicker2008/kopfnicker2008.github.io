@@ -6,28 +6,20 @@
   app.controller('MitgliederCtrl', ['$scope', 'fbutil', '$firebase','$firebaseObject', '$firebaseArray',
     function($scope, fbutil, $firebase, $firebaseObject, $firebaseArray) {
       //var users = $firebaseArray(fbutil.ref('users'));
+      $scope.users = {};
       var obj = $firebaseObject(fbutil.ref('users'));
 
       // to take an action after the data loads, use the $loaded() promise
       obj.$loaded().then(function() {
-        console.log("loaded record:", obj.$id, obj.user, obj.name);
 
         // To iterate the key/value pairs of the object, use angular.forEach()
         angular.forEach(obj, function(value, key) {
           console.log(key, value);
+          $scope.users.push(value);
         });
       });
 
-      $scope.users = [
-        {
-          name: 'User1',
-          uid: 'asdf'
-        },
-        {
-          name: 'User2',
-          uid: 'yxcv'
-        }
-      ];
+
 
       $scope.gotoUser = function(id){
 
