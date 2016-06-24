@@ -1,6 +1,6 @@
-var app = angular.module('myApp');
+var app = angular.module('myApp.services');
 
-app.factory('imageService', ['Auth'], function(Auth){
+app.factory('imageService', function(){
 	var f = function f(ctx) {
 		var dataURL = ctx.canvas.toDataURL( "image/jpg", 0.1 );
 		var data = atob( dataURL.substring( "data:image/png;base64,".length ) ),
