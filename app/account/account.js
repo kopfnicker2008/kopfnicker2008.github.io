@@ -14,9 +14,7 @@
       $scope.logout = function() {
         profile.online = 'false';
         if( unbind ) { unbind(); }
-        profile.$save().then(function(ref) {
-          profile.$destroy();
-        });
+        profile.$destroy();
         Auth.$unauth();
         $location.path('/login');
       };
