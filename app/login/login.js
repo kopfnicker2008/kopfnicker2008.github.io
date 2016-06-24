@@ -8,7 +8,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
       });
     }])
 
-    .controller('LoginCtrl', ['$scope', 'Auth', '$location', 'fbutil', function($scope, Auth, $location, fbutil) {
+    .controller('LoginCtrl', ['$scope', 'Auth', '$location', 'fbutil', '$firebaseObject', function($scope, Auth, $location, fbutil, $firebaseObject) {
       $scope.email = null;
       $scope.pass = null;
 
@@ -16,6 +16,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
         Auth.$authWithOAuthPopup('google', {scope:'email'})
             .then(function (authObject) {
               console.log(authObject);
+                var profile = $firebaseObject(fbutil.ref('users', user.uid));
               var ref = fbutil.ref('users', authObject.uid);
               return fbutil.handler(function(cb) {
                 ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name, online: 'true'}, cb);
