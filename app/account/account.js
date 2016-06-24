@@ -19,7 +19,7 @@
         $location.path('/login');
       };
 
-      $scope.importImage = function(e){
+      $scope.changesrc = function(e){
         imageService.encodeImageFileAsURL(e);
       };
 
