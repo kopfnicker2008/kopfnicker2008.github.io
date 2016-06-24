@@ -3,14 +3,22 @@
 
   var app = angular.module('myApp.Mitglieder', ['firebase', 'firebase.utils', 'firebase.auth', 'ngRoute']);
 
-  app.controller('MitgliederCtrl', ['$scope', 'fbutil', '$firebase','$firebaseObject', '$firebaseArray',
-    function($scope, fbutil, $firebase, $firebaseObject, $firebaseArray) {
-      var users = $firebaseArray(fbutil.ref('users'));
-      var user = $firebase(ref).$asObject();
+  app.controller('MitgliederCtrl', ['$scope', 'fbutil', 'FBURL','$firebase','$firebaseObject', '$firebaseArray',
+    function($scope, fbutil, FBURL, $firebase, $firebaseObject, $firebaseArray) {
+      var ref = new Firebase(FBURL);
 
-      user.$loaded().then(function() {
-        $rootScope.currentUser = user;
+      var obj = $firebaseObject(ref);
+
+      // to take an action after the data loads, use the $loaded() promise
+      obj.$loaded().then(function() {
+        console.log("loaded record:", obj.$id, obj.user, obj.name);
+
+        // To iterate the key/value pairs of the object, use angular.forEach()
+        angular.forEach(obj, function(value, key) {
+          console.log(key, value);
+        });
       });
+
       $scope.users = [
         {
           name: 'User1',
