@@ -12,12 +12,6 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
       $scope.email = null;
       $scope.pass = null;
 
-<<<<<<< HEAD
-        // 1is6i5cuasOF7XleD4tq8gncGes2 -> aotten77@gmail.com
-        // NxgwFr891rVvi1tsC528khKC1OO2 -> aotten.joinmedia@gmail.com
-
-=======
->>>>>>> 4c2e891472db28e685fc29d1dd038c5368296d64
       $scope.login = function(email, pass) {
         Auth.$authWithOAuthPopup('google', {scope:'email'})
             .then(function (authObject) {
