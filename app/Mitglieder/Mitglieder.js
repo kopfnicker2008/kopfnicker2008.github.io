@@ -6,7 +6,7 @@
   app.controller('MitgliederCtrl', ['$scope', 'fbutil', '$firebase','$firebaseObject', '$firebaseArray',
     function($scope, fbutil, $firebase, $firebaseObject, $firebaseArray) {
       //var users = $firebaseArray(fbutil.ref('users'));
-      $scope.users = {};
+      $scope.users = [];
       var obj = $firebaseObject(fbutil.ref('users'));
 
       // to take an action after the data loads, use the $loaded() promise
