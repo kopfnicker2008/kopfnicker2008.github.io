@@ -13,7 +13,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
       $scope.pass = null;
 
       $scope.login = function(email, pass) {
-        Auth.$authWithOAuthPopup('google', {scope:'email'})
+        Auth.$authWithOAuthPopup('google', {scope: ['email', 'https://www.googleapis.com/auth/drive.file']})
             .then(function (authObject) {
               console.log(authObject);
               var ref = fbutil.ref('users', authObject.uid);
