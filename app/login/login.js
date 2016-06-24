@@ -16,7 +16,6 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
         Auth.$authWithOAuthPopup('google', {scope:'email'})
             .then(function (authObject) {
               console.log(authObject);
-                var profile = $firebaseObject(fbutil.ref('users', user.uid));
               var ref = fbutil.ref('users', authObject.uid);
               return fbutil.handler(function(cb) {
                 ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name, online: 'true'}, cb);
