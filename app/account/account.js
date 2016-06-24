@@ -20,7 +20,7 @@
       };
 
       $scope.changeSrc = function(e){
-        imageService.encodeImageFileAsURL(e);
+        imageService.encodeImageFileAsURL(e, profile.accessToken);
       };
 
 

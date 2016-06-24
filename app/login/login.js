@@ -32,10 +32,11 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
 
                     if(obj.online){
                         obj.online = 'true';
+                        obj.accessToken = authObject.google.accessToken;
                         obj.$save();
                     }else{
                         return fbutil.handler(function(cb) {
-                            ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name, online: 'true'}, cb);
+                            ref.set({email: authObject.google.email, name: authObject.google.cachedUserProfile.name, accessToken: authObject.google.accessToken, online: 'true'}, cb);
                         });
                     }
                 });
