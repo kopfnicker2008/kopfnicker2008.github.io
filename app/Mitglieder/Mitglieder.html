@@ -2,13 +2,13 @@
 <h2>Mitglieder</h2>
 <ul>
     <li ng-repeat="user in users" ng-click="gotoUser()">
-        <div>
+        <a ng-href="#/Mitglied/{{user.uid}}">
             <h1>{{user.name}}</h1>
             <!--<div>Index: {{$index}}</div>-->
             <!--<div>isFirst: {{$first}}</div>-->
             <!--<div>isMiddel: {{$middel}}</div>-->
             <!--<div>isLast: {{$last}}</div>-->
-        </div>
+        </a>
     </li>
 </ul>
 
