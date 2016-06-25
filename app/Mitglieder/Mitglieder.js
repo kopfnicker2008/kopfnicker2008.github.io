@@ -15,7 +15,7 @@
         // To iterate the key/value pairs of the object, use angular.forEach()
         angular.forEach(obj, function(value, key) {
           console.log(key, value);
-          $scope.users.push(value);
+          $scope.users.push(angular.extend(value, {uid: key}));
         });
       });
 
