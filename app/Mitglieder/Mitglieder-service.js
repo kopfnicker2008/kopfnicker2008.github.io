@@ -7,9 +7,8 @@
 	app.factory ('$Mitglieder', function (  ) {
 
 		var _getUser = function(id){
-			return {
-				name: 'name'+id
-			}
+			var profile = $firebaseObject(fbutil.ref('users', id));
+			return profile;
 		};
 
 		return {
