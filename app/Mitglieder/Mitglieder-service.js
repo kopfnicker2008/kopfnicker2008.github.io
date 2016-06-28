@@ -2,9 +2,9 @@
 
 (function () {
 
-	var app = angular.module( 'myApp.MitgliederService', ['ngResource'] );
+	var app = angular.module( 'myApp.MitgliederService', ['firebase', 'ngResource'] );
 
-	app.factory ('$Mitglieder', function (  ) {
+	app.factory ('$Mitglieder', ['fbutil', '$firebaseObject', function ( fbutil, $firebaseObject ) {
 
 		var _getUser = function(id){
 			var profile = $firebaseObject(fbutil.ref('users', id));
@@ -41,7 +41,7 @@
 		//}
 
 
-	});
+	}]);
 
 
 
